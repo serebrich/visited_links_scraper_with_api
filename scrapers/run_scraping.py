@@ -1,8 +1,14 @@
 import asyncio
-from sql_app import crud, models
-from sql_app.database import SessionLocal, engine
-
-from scrapers.scraper import Scraper
+try:
+    from sql_app import crud, models
+    from sql_app.database import SessionLocal, engine
+    from scrapers.scraper import Scraper
+except ImportError:
+    import sys
+    sys.path.append('../')
+    from sql_app import crud, models
+    from sql_app.database import SessionLocal, engine
+    from scrapers.scraper import Scraper
 
 from loguru import logger
 

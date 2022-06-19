@@ -8,10 +8,15 @@ from loguru import logger
 from tld import get_tld
 from typing import List, Union
 from datetime import datetime
-
-from config import *
 from bs4 import BeautifulSoup
-from managers.gsheet_manager import GoogleSheetManager
+try:
+    from config import *
+    from managers.gsheet_manager import GoogleSheetManager
+except ImportError:
+    import sys
+    sys.path.append('../')
+    from config import *
+    from managers.gsheet_manager import GoogleSheetManager
 
 logger.add("../logs/scraping.log", format=LOGGER_FORMAT, rotation=LOGGER_ROTATING, catch=True)
 
@@ -139,7 +144,7 @@ class Scraper(GoogleSheetManager):
 
         try:
             pool = ThreadPool(THREADS_COUNT)
-            results = pool.map(self.grab_info_from_url, entry_data_df.to_dict('records')[:100])
+            results = pool.map(self.grab_info_from_url, entry_data_df.to_dict('records'))
         finally:
             if pool:
                 pool.close()

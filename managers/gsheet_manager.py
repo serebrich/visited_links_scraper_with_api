@@ -4,7 +4,12 @@ import gspread
 from loguru import logger
 import pandas as pd
 import os
-import config
+try:
+    import config
+except ImportError:
+    import sys
+    sys.path.append('../')
+    import config
 
 
 class GoogleSheetManager:
