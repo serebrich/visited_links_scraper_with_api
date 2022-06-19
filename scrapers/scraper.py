@@ -107,8 +107,7 @@ class Scraper(GoogleSheetManager):
             else:
                 try:
                     url_info['status_code'] = response.status_code
-                    url_info['domain'] = get_tld(response.url, as_object=True).parsed_url.hostname
-                    url_info['redirect_to'] = response.url if response.url != url_visited['URL'] else None
+                    url_info['domain'] = get_tld(url_visited['URL'], as_object=True).parsed_url.hostname
                     url_info['error'] = True
                     logger.error(f"Unsuccessful request to {url_visited['URL']}, status {response.status_code}")
                 except Exception:
