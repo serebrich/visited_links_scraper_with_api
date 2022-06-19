@@ -133,5 +133,5 @@ dmypy.json
 *.env
 managers/google_api_key.json
 .logs/
-.DS_Store
 .idea
+.DS_Store
