@@ -76,3 +76,7 @@ it runs on port **8000**
 ### Api doc
 If it runs on localhost, Doc will be [HERE](http://127.0.0.1:8000/docs)
 
+### Postman collection for testing
+```angular2html
+https://www.getpostman.com/collections/95179594b214d1d1f62a
+```
