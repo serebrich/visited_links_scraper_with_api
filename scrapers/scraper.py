@@ -52,6 +52,8 @@ class Scraper(GoogleSheetManager):
             logger.error(f"Cant make request to {url} || Not Valid URL")
         except ChunkedEncodingError:
             logger.error(f"Cant make request to {url} || Chunked Encoding Error")
+        except Exception:
+            logger.exception(f"Cant make request to {url} || Non-excepted Error")
 
     @staticmethod
     def get_title_from_html(url: str, html: str) -> Union[str, None]:
