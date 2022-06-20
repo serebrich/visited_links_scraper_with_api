@@ -1,7 +1,7 @@
 import requests
 from requests import Response
 from requests.adapters import HTTPAdapter
-from requests.exceptions import (ConnectionError, SSLError,
+from requests.exceptions import (ConnectionError, SSLError, ChunkedEncodingError,
                                  Timeout, TooManyRedirects, InvalidURL)
 from multiprocessing.dummy import Pool as ThreadPool
 from loguru import logger
@@ -50,6 +50,8 @@ class Scraper(GoogleSheetManager):
             logger.error(f"Cant make request to {url} ||Too Many Redirects error")
         except InvalidURL:
             logger.error(f"Cant make request to {url} || Not Valid URL")
+        except ChunkedEncodingError:
+            logger.error(f"Cant make request to {url} || Chunked Encoding Error")
 
     @staticmethod
     def get_title_from_html(url: str, html: str) -> Union[str, None]:
